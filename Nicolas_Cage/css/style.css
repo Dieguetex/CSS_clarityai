@@ -1,0 +1,103 @@
+/*
+Given the following html try to style it, so it meets the visual rules mentioned in the rules mentioned below.
+
+Try to do it by using just CSS (or any preprocessor you like) but without modifying the HTML. In case you consider interesting to change the given HTML, feel free to do so as long as you justify it.
+
+Regarding visual style there are no restrictions. Feel free to style it as you prefer but don't spend too much time on it. We expect this test to take you 1 hour at most.
+
+Rules: This rules are completely centered on the element with class "header-container" you can omit the rest of the html.
+    - Div with class "header-container" should have the width of 100% of the viewport, unless the viewport is less than 1280px, in which case it should stick to 1280px
+    - Div with class "user", should have always a fixed width of 200px
+    - Div with class "menu" should be always centered in the parent div
+    - The nav (and the <li>s inside the <ul>) element should show all elements inline (one line)
+    - The div with class "phrase-of-the-day" should have always the width of 30% of the parent element
+    - All divs inside "header container" should have a 1 pixel border separator, so it will look something like this:
+	| Active User: Nicolas Cage | Page 1 Page 2 Page 3 | Nic cage Everywhere |
+    - Just adding a class, we should be able to invert the order of appearance ("user" should be shown at the right and "phrase-of-the-day" at the left)
+- If you find any of the aforementioned rules impossible to achieve, you can skip it, but please explain why it is impossible to achieve.
+
+Enjoy the exercise!
+*/
+/* RESET */
+*,
+*::before, *::after,
+*:before, *:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+/* I actually prefer flex (96.68% global usage) to grid because it has a global usage of 87.73% in https://caniuse.com */
+/* 
+    "-Just adding a class, we should be able to invert the order of appearance"
+I decided instead adding a class, using the most easy flex-direction property. */
+/* I didn't find the way to center <article> without adding anythig to the HTML, because modify <body> isn't a good practice so, when you try to resize the window to a smaller one, the text tends to get to the left of the whole page. We add 1280px fix width to header-container and there is the problem to leave it perfect. */
+.header-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  background: lightgrey;
+  -ms-flex-wrap: nowrap;
+  flex-wrap: nowrap;
+  width: 1280px;
+  height: 20vh; }
+  .header-container div {
+    border-left: 1px solid grey;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    height: 1rem; }
+
+.user {
+  width: 200px;
+  border-right: 1px solid grey;
+  padding-right: 0.5rem; }
+
+.menu {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center; }
+  .menu ul {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: start;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-wrap: nowrap;
+    flex-wrap: nowrap;
+    margin: 0;
+    padding: 0; }
+    .menu ul li {
+      margin-left: 2rem; }
+
+.phrase-of-the-day {
+  width: 30%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center; }
+
+article {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  width: 70%;
+  margin: auto; }
+  article p {
+    width: 90%;
+    margin: auto;
+    padding-bottom: 2rem; }
+
+@media screen and (min-width: 1280px) {
+  .header-container {
+    width: 100%; } }
