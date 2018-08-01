@@ -1,0 +1,45 @@
+/*
+Given the following table, style it that when the screen width is reduced the first column is fixed and the rest has horizontal scroll.
+
+Try to do it by using just CSS (or any preprocessor you like) but without modifiying the HTML. In case you consider interesting to change the given HTML, feel free to do so as long as you justify it.
+
+Regarding visual style there are no restrictions. Feel free to style it as you prefer but don't speend too much time on it. 
+
+Write down any assumtion you make.
+
+Enjoy the exercise!
+*/
+*,
+*::before, *::after,
+*:before, *:after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; }
+
+table {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  padding: 0;
+  margin-left: 1rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  border: 1px solid silver;
+  overflow-x: auto; }
+
+td, th {
+  margin: 0;
+  border: 1px solid silver;
+  border-left: 0;
+  border-right: 0;
+  white-space: nowrap;
+  border-top-width: 0px;
+  padding: 0.3rem; }
+
+td:nth-child(1), th:nth-child(1) {
+  background-color: white;
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0; }
+
+/* thead {
+    background: black;
+    color:#fff;
+} */
